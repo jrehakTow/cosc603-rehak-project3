@@ -21,7 +21,7 @@ public class RectangleTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		rect1 = new Rectangle(new Point(2.0, 2.0), new Point(4.0, 7.0));
+		rect1 = new Rectangle(new Point(2.0, 2.0), new Point(4.0, 7.0)); //(W: 2, L: 5)
 		rect2 = new Rectangle(new Point(2.0, 6.0), new Point(4.0, 3.0));
 	}
 

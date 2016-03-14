@@ -7,7 +7,7 @@ package edu.towson.cis.cosc603.project4.rectangle;
 public class Rectangle {
 	
 	/** The p2. */
-	private Point p1, p2;
+	private Point p1, p2; 
 	
 	/**
 	 * Instantiates a new rectangle.
