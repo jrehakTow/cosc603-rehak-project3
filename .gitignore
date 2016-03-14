@@ -10,6 +10,7 @@
 
 #eclipse
 .metadata/
+.metadata/~
 .metadata
 .recommender/
 .recommender
