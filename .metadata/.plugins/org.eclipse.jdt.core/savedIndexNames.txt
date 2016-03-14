@@ -22,7 +22,6 @@ INDEX VERSION 1.127+/Volumes/Machintosh 2A/Users/rehakjc/Documents/cosc603 testi
 4266858779.index
 3266567714.index
 1294930193.index
-1338825950.index
 1021006329.index
 1241108903.index
 3321539481.index
