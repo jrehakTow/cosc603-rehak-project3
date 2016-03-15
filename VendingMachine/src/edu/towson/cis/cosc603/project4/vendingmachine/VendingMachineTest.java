@@ -10,6 +10,7 @@ public class VendingMachineTest {
 
 	@Before
 	public void setUp() throws Exception {
+		VendingMachine sodaPopMachine = new VendingMachine();
 	}
 
 	@After
