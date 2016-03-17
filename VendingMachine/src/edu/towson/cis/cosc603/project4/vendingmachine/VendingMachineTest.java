@@ -36,67 +36,82 @@ public class VendingMachineTest {
 
 	@Test
 	public void testVendingMachine() {
-		//fail("Not yet implemented");
 		assertNotNull(sodaPopMachine); //make sure soda machine created
 	}
 
 	@Test
 	public void testAddItem() {
-		fail("Not yet implemented");
-		//sodaPopMachine.addItem(coke, "A");
-		
 		//add item normal. 
 		sodaPopMachine.addItem(jolt, "D");
 		
-		//add too many times
-		sodaPopMachine.addItem(pesi, "E");
-		
-		//add item with duplicate code
-		
-		//add item wrong code
-		
 	}
-
-	@Test
-	public void testGetItem() {
-		fail("Not yet implemented");
+	
+	@Test(expected = VendingMachineException.class)
+	public void testAddItem1BadCode() {
+		//add item wrong code
+		sodaPopMachine.addItem(pesi, "E");
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testAddItem2SlotOccupied() {
+		//add too many times
+		sodaPopMachine.addItem(coke, "A");	
 	}
 
 	@Test
 	public void testRemoveItem() {
-		//fail("Not yet implemented");
-		//test if remove item operates normal
 		assertEquals(coke, sodaPopMachine.removeItem("A")); 
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testRemoveItem1RemoveTooMany() {
+		sodaPopMachine.removeItem("A");
+		assertNotEquals(coke, sodaPopMachine.removeItem("A")); 
 	}
 
 	@Test
 	public void testInsertMoney() {
-		fail("Not yet implemented");
+		sodaPopMachine.insertMoney(2);
+		assertEquals(2.00, sodaPopMachine.balance, 0.0);
+	}
+	
+	@Test
+	public void testInsertMoney1AddtoBalance() {
+		sodaPopMachine.balance = 1.00;
+		sodaPopMachine.insertMoney(2);
+		assertEquals(3.00, sodaPopMachine.balance, 0.0);
 	}
 
 	@Test
 	public void testGetBalance() {
-		fail("Not yet implemented");
+		sodaPopMachine.balance = 2.00;
+		assertEquals(2.00, sodaPopMachine.getBalance(), 0.0);
 	}
 
 	@Test
 	public void testMakePurchase() {
-		//success (don't forget about balance)
+		//success
 		sodaPopMachine.balance = 1.50;
 		assertTrue(sodaPopMachine.makePurchase("A"));
-		
 		//failure out of stock
 	}
 	
-	@Test(expected = VendingMachineException.class)
-	public void testMakePurchaseNoBalance() {
+	@Test
+	public void testMakePurchase1NoBalance() {
 		//failure not enough money
 		sodaPopMachine.balance = 0;
 		assertFalse(sodaPopMachine.makePurchase("A"));
 	}
 	
+	@Test
+	public void testMakePurchase2OutofStock() {
+		//failure out of stock
+		sodaPopMachine.balance = 3.99;
+		assertFalse(sodaPopMachine.makePurchase("D"));	
+	}
+	
 	@Test(expected = VendingMachineException.class)
-	public void testMakePurchaseBadInput() {
+	public void testMakePurchase2BadInput() {
 		//failure bad code
 		assertFalse(sodaPopMachine.makePurchase("E"));
 	}
