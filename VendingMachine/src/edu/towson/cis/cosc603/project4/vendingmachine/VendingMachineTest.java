@@ -24,8 +24,10 @@ public class VendingMachineTest {
 		drPepper = new VendingMachineItem("Dr. Pepper", 1.34);
 		jolt = new VendingMachineItem("jolt", 3.99);
 		
-		//add item
+		//add items
 		sodaPopMachine.addItem(coke, "A");
+		sodaPopMachine.addItem(pesi, "B");
+		sodaPopMachine.addItem(drPepper, "C");
 	}
 
 	@After
@@ -43,7 +45,15 @@ public class VendingMachineTest {
 		fail("Not yet implemented");
 		//sodaPopMachine.addItem(coke, "A");
 		
+		//add item normal. 
+		sodaPopMachine.addItem(jolt, "D");
 		
+		//add too many times
+		sodaPopMachine.addItem(pesi, "E");
+		
+		//add item with duplicate code
+		
+		//add item wrong code
 		
 	}
 
