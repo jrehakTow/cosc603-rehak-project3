@@ -66,7 +66,7 @@ public class VendingMachineTest {
 	public void testRemoveItem() {
 		//fail("Not yet implemented");
 		//test if remove item operates normal
-		assertEquals(sodaPopMachine.removeItem("A"), coke); 
+		assertEquals(coke, sodaPopMachine.removeItem("A")); 
 	}
 
 	@Test
@@ -81,12 +81,38 @@ public class VendingMachineTest {
 
 	@Test
 	public void testMakePurchase() {
-		fail("Not yet implemented");
+		//success (don't forget about balance)
+		sodaPopMachine.balance = 1.50;
+		assertTrue(sodaPopMachine.makePurchase("A"));
+		
+		//failure out of stock
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testMakePurchaseNoBalance() {
+		//failure not enough money
+		sodaPopMachine.balance = 0;
+		assertFalse(sodaPopMachine.makePurchase("A"));
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testMakePurchaseBadInput() {
+		//failure bad code
+		assertFalse(sodaPopMachine.makePurchase("E"));
 	}
 
 	@Test
 	public void testReturnChange() {
-		fail("Not yet implemented");
+		sodaPopMachine.balance = 0.50;
+		assertEquals(0.50, sodaPopMachine.returnChange(), 0.0);
+		
+		assertEquals(0, sodaPopMachine.balance, 0);
+	}
+	
+	@Test
+	public void testReturnChange1() {
+		sodaPopMachine.balance = 0.0;
+		assertEquals(0.0, sodaPopMachine.returnChange(), 0.0);
 	}
 
 
