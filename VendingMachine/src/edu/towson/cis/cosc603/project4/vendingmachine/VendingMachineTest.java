@@ -17,7 +17,8 @@ public class VendingMachineTest {
 	VendingMachineItem jolt;
 	
 	String[] code = {"A", "B", "C", "D"};
-	VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
+	//VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
+	VendingMachineItem[] soda;
 
 	@Before
 	public void setUp() throws Exception {
@@ -27,6 +28,8 @@ public class VendingMachineTest {
 		drPepper = new VendingMachineItem("Dr. Pepper", 1.34);
 		jolt = new VendingMachineItem("jolt", 3.99);
 		
+		VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
+		this.soda = soda;
 		
 		//add items
 		sodaPopMachine.addItem(coke, "A");
@@ -36,6 +39,10 @@ public class VendingMachineTest {
 
 	@After
 	public void tearDown() throws Exception {
+		sodaPopMachine = null;
+		for(int i = 0; i<4; i++){
+			soda[i] = null;
+		}
 	}
 
 	@Test
@@ -80,7 +87,18 @@ public class VendingMachineTest {
 		assertEquals(pesi, sodaPopMachine.getItem("D"));
 	}
 
-
+	@Test
+	public void testAddItem5EmptyToFull() {
+		//remove all 3
+		for(int i = 0; i < 3; i++){
+			sodaPopMachine.removeItem(code[i]);
+		}
+		//fill
+		for(int i = 0; i < 4; i++){	
+			sodaPopMachine.addItem(soda[i], code[i]);
+			assertEquals(soda[i], sodaPopMachine.getItem(code[i]));
+		}
+	}
 
 	@Test
 	public void testRemoveItem() {
@@ -94,28 +112,15 @@ public class VendingMachineTest {
 	}
 	
 	@Test
-	public void testRemoveItem2AllGone() {
-		/*
+	public void testRemoveItem2AllGone() {	
 		sodaPopMachine.addItem(jolt, "D");
-		sodaPopMachine.removeItem("A");
-		sodaPopMachine.removeItem("B");
-		sodaPopMachine.removeItem("C");
-		sodaPopMachine.removeItem("D");
-		*/
-		//sodaPopMachine.addItem(coke, "A");
-		
-		sodaPopMachine.addItem(jolt, "D");
-		
-		VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
 		
 		for(int i = 0; i < 4; i++){
-
 			sodaPopMachine.removeItem(code[i]);
 
 			assertNotSame(soda[i], sodaPopMachine.getItem(code[i]));
 			assertNull(sodaPopMachine.getItem(code[i]));
 		}
-		//assertNotEquals(coke, sodaPopMachine.removeItem("A")); 
 	}
 	
 	@Test(expected = VendingMachineException.class)
@@ -168,7 +173,6 @@ public class VendingMachineTest {
 		sodaPopMachine.balance = 3.99;
 		assertFalse(sodaPopMachine.makePurchase("D"));	
 	}
-	
 	
 	@Test(expected = VendingMachineException.class)
 	public void testMakePurchase3BadInput() {
