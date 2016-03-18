@@ -27,6 +27,7 @@ public class VendingMachineTest {
 		drPepper = new VendingMachineItem("Dr. Pepper", 1.34);
 		jolt = new VendingMachineItem("jolt", 3.99);
 		
+		
 		//add items
 		sodaPopMachine.addItem(coke, "A");
 		sodaPopMachine.addItem(pesi, "B");
@@ -79,6 +80,8 @@ public class VendingMachineTest {
 		assertEquals(pesi, sodaPopMachine.getItem("D"));
 	}
 
+
+
 	@Test
 	public void testRemoveItem() {
 		assertEquals(coke, sodaPopMachine.removeItem("A")); 
@@ -100,11 +103,16 @@ public class VendingMachineTest {
 		sodaPopMachine.removeItem("D");
 		*/
 		//sodaPopMachine.addItem(coke, "A");
+		
 		sodaPopMachine.addItem(jolt, "D");
 		
 		VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
+		
 		for(int i = 0; i < 4; i++){
+
 			sodaPopMachine.removeItem(code[i]);
+
+			assertNotSame(soda[i], sodaPopMachine.getItem(code[i]));
 			assertNull(sodaPopMachine.getItem(code[i]));
 		}
 		//assertNotEquals(coke, sodaPopMachine.removeItem("A")); 
