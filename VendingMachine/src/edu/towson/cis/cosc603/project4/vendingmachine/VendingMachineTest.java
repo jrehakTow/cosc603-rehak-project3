@@ -15,6 +15,9 @@ public class VendingMachineTest {
 	VendingMachineItem pesi;
 	VendingMachineItem drPepper;
 	VendingMachineItem jolt;
+	
+	String[] code = {"A", "B", "C", "D"};
+	VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
 
 	@Before
 	public void setUp() throws Exception {
@@ -99,11 +102,9 @@ public class VendingMachineTest {
 		//sodaPopMachine.addItem(coke, "A");
 		sodaPopMachine.addItem(jolt, "D");
 		
-		String[] code = {"A", "B", "C", "D"};
 		VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
 		for(int i = 0; i < 4; i++){
 			sodaPopMachine.removeItem(code[i]);
-			assertNotEquals(soda[i], sodaPopMachine.getItem(code[i]));
 			assertNull(sodaPopMachine.getItem(code[i]));
 		}
 		//assertNotEquals(coke, sodaPopMachine.removeItem("A")); 
