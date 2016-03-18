@@ -22,8 +22,6 @@ public class VendingMachineItemTest {
 
 	@Test
 	public void testVendingMachineItem() {
-		//fail("Not yet implemented");
-		//test normal
 		assertNotNull(coke);
 	}
 	

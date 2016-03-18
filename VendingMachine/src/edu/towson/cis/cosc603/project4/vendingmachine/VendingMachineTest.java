@@ -44,7 +44,6 @@ public class VendingMachineTest {
 		//add item normal. 
 		sodaPopMachine.addItem(jolt, "D");
 		assertEquals(jolt, sodaPopMachine.getItem("D"));
-		
 	}
 	
 	@Test(expected = VendingMachineException.class)
@@ -64,7 +63,17 @@ public class VendingMachineTest {
 	@Test(expected = VendingMachineException.class)
 	public void testAddItem3LowerCaseCode() {
 		sodaPopMachine.addItem(jolt, "d");	
-		assertNotEquals(jolt, sodaPopMachine.getItem("D"));
+		//assertNotEquals(jolt, sodaPopMachine.getItem("D"));
+		assertNull(sodaPopMachine.getItem("D"));
+		assertNull(sodaPopMachine.getItem("d"));
+	}
+	
+	@Test
+	public void testAddItem4SameItemMultiSlot() {
+		//add item normal. 
+		sodaPopMachine.addItem(pesi, "D");
+		assertEquals(pesi, sodaPopMachine.getItem("B"));
+		assertEquals(pesi, sodaPopMachine.getItem("D"));
 	}
 
 	@Test
@@ -92,9 +101,10 @@ public class VendingMachineTest {
 		
 		String[] code = {"A", "B", "C", "D"};
 		VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
-		for(int i = 0; i<4; i++){
+		for(int i = 0; i < 4; i++){
 			sodaPopMachine.removeItem(code[i]);
 			assertNotEquals(soda[i], sodaPopMachine.getItem(code[i]));
+			assertNull(sodaPopMachine.getItem(code[i]));
 		}
 		//assertNotEquals(coke, sodaPopMachine.removeItem("A")); 
 	}
@@ -134,7 +144,6 @@ public class VendingMachineTest {
 		//success
 		sodaPopMachine.balance = 1.50;
 		assertTrue(sodaPopMachine.makePurchase("A"));
-		//failure out of stock
 	}
 	
 	@Test
@@ -164,6 +173,18 @@ public class VendingMachineTest {
 		sodaPopMachine.balance = 2.00;
 		assertTrue(sodaPopMachine.makePurchase("A"));
 		assertEquals(0.50, sodaPopMachine.balance, 0.0);
+	}
+	
+	@Test
+	public void testMakePurchase5DoublePurchase() {
+		sodaPopMachine.balance = 3.00;
+		assertTrue(sodaPopMachine.makePurchase("A"));
+		assertEquals(1.50, sodaPopMachine.balance, 0.0);
+		
+		//failure out of stock
+		assertNull(sodaPopMachine.getItem("A"));
+		assertFalse(sodaPopMachine.makePurchase("A"));
+		assertEquals(1.50, sodaPopMachine.balance, 0.0);
 	}
 
 	@Test
