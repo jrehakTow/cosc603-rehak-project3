@@ -40,7 +40,7 @@ public class VendingMachineTest {
 	@After
 	public void tearDown() throws Exception {
 		sodaPopMachine = null;
-		for(int i = 0; i<4; i++){
+		for(int i = 0; i<soda.length; i++){
 			soda[i] = null;
 		}
 	}
@@ -90,11 +90,11 @@ public class VendingMachineTest {
 	@Test
 	public void testAddItem5EmptyToFull() {
 		//remove all 3
-		for(int i = 0; i < 3; i++){
+		for(int i = 0; i < soda.length-1; i++){
 			sodaPopMachine.removeItem(code[i]);
 		}
 		//fill
-		for(int i = 0; i < 4; i++){	
+		for(int i = 0; i < soda.length; i++){	
 			sodaPopMachine.addItem(soda[i], code[i]);
 			assertEquals(soda[i], sodaPopMachine.getItem(code[i]));
 		}
@@ -115,7 +115,7 @@ public class VendingMachineTest {
 	public void testRemoveItem2AllGone() {	
 		sodaPopMachine.addItem(jolt, "D");
 		
-		for(int i = 0; i < 4; i++){
+		for(int i = 0; i < soda.length; i++){
 			sodaPopMachine.removeItem(code[i]);
 
 			assertNotSame(soda[i], sodaPopMachine.getItem(code[i]));
