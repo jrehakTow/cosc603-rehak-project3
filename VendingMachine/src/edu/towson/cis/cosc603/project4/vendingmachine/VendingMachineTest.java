@@ -54,21 +54,21 @@ public class VendingMachineTest {
 	public void testAddItem() {
 		//add item normal. 
 		sodaPopMachine.addItem(jolt, "D");
-		assertEquals(jolt, sodaPopMachine.getItem("D"));
+		assertSame(jolt, sodaPopMachine.getItem("D"));
 	}
 	
 	@Test(expected = VendingMachineException.class)
 	public void testAddItem1BadCode() {
 		//add item wrong code
 		sodaPopMachine.addItem(pesi, "E");
-		assertNotEquals(pesi, sodaPopMachine.getItem("E"));
+		assertNotSame(pesi, sodaPopMachine.getItem("E"));
 	}
 	
 	@Test(expected = VendingMachineException.class)
 	public void testAddItem2SlotOccupied() {
 		//add too many times
 		sodaPopMachine.addItem(jolt, "A");	
-		assertEquals(coke, sodaPopMachine.getItem("A"));
+		assertSame(coke, sodaPopMachine.getItem("A"));
 	}
 	
 	@Test(expected = VendingMachineException.class)
@@ -83,8 +83,8 @@ public class VendingMachineTest {
 	public void testAddItem4SameItemMultiSlot() {
 		//add item normal. 
 		sodaPopMachine.addItem(pesi, "D");
-		assertEquals(pesi, sodaPopMachine.getItem("B"));
-		assertEquals(pesi, sodaPopMachine.getItem("D"));
+		assertSame(pesi, sodaPopMachine.getItem("B"));
+		assertSame(pesi, sodaPopMachine.getItem("D"));
 	}
 
 	@Test
@@ -96,19 +96,19 @@ public class VendingMachineTest {
 		//fill
 		for(int i = 0; i < soda.length; i++){	
 			sodaPopMachine.addItem(soda[i], code[i]);
-			assertEquals(soda[i], sodaPopMachine.getItem(code[i]));
+			assertSame(soda[i], sodaPopMachine.getItem(code[i]));
 		}
 	}
 
 	@Test
 	public void testRemoveItem() {
-		assertEquals(coke, sodaPopMachine.removeItem("A")); 
+		assertSame(coke, sodaPopMachine.removeItem("A")); 
 	}
 	
 	@Test(expected = VendingMachineException.class)
 	public void testRemoveItem1RemoveTooMany() {
 		sodaPopMachine.removeItem("A");
-		assertNotEquals(coke, sodaPopMachine.removeItem("A")); 
+		assertNotSame(coke, sodaPopMachine.removeItem("A")); 
 	}
 	
 	@Test
@@ -126,6 +126,7 @@ public class VendingMachineTest {
 	@Test(expected = VendingMachineException.class)
 	public void testRemoveItem3BadInput() {
 		sodaPopMachine.removeItem("E");
+		assertNull(sodaPopMachine.getItem("E"));
 	}
 
 	@Test
