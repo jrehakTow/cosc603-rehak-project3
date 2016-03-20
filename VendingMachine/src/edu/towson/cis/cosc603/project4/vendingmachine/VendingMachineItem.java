@@ -14,6 +14,9 @@ public class VendingMachineItem {
 	// Exception message for when the price is less than zero
 	private final static String PRICE_LESS_THAN_ZERO_MESSAGE = "Price cannot be less than zero";
 	
+	// Exception message for when no name has been assigned to item
+	private final static String NO_NAME_ASSIGNED_MESSAGE = "The item must have a name";
+	
 	/**
 	 * Constructor which fills in the name and price of the item
 	 * Precondition: price argument >= 0
@@ -26,7 +29,10 @@ public class VendingMachineItem {
 		this.name = name;
 		if( price < 0 ) {
 			throw new VendingMachineException(PRICE_LESS_THAN_ZERO_MESSAGE);
-		} else {
+		}
+		else if(name == null || name.isEmpty() || name.trim().isEmpty()){
+			throw new VendingMachineException(NO_NAME_ASSIGNED_MESSAGE);
+		}else {
 			this.price = price;
 		}
 	}

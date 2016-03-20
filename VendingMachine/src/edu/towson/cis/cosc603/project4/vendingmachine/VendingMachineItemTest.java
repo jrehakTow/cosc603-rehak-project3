@@ -10,6 +10,10 @@ public class VendingMachineItemTest {
 	
 	VendingMachineItem coke;
 	VendingMachineItem pesi;
+	
+	VendingMachineItem nullName;
+	VendingMachineItem emptyName;
+	VendingMachineItem whiteSpace;
 
 	@Before
 	public void setUp() throws Exception {
@@ -26,9 +30,27 @@ public class VendingMachineItemTest {
 	}
 	
 	@Test(expected = VendingMachineException.class)
-	public void testVendingMachineItemLessThanZero() {
+	public void testVendingMachineItem1LessThanZero() {
 		pesi = new VendingMachineItem("pesi", -1);
 		assertNull(pesi);
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testVendingMachineItem2NullName() {
+		nullName = new VendingMachineItem(null, 1);
+		assertNull(nullName);
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testVendingMachineItem3NoName() {
+		emptyName = new VendingMachineItem("", 1);
+		assertNull(emptyName);
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testVendingMachineItem4Whitespace() {
+		whiteSpace = new VendingMachineItem(" ", 1);
+		assertNull(whiteSpace);
 	}
 
 	@Test
