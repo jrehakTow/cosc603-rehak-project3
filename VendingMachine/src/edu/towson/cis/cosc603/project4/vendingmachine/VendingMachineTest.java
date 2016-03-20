@@ -369,5 +369,4 @@ public class VendingMachineTest {
 		assertEquals(0.0, sodaPopMachine.returnChange(), 0.0);
 	}
 
-
 }
