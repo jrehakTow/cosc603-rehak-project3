@@ -22,6 +22,7 @@ public class VendingMachineItemTest {
 
 	@After
 	public void tearDown() throws Exception {
+		coke = null;
 	}
 
 	@Test

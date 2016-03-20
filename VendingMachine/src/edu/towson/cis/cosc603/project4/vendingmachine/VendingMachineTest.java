@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class VendingMachineTest {
 	
-	VendingMachine sodaPopMachine; //declare object
+	VendingMachine sodaPopMachine; 
 	
 	//declare items for vending machine
 	VendingMachineItem coke;
@@ -17,7 +17,7 @@ public class VendingMachineTest {
 	VendingMachineItem jolt;
 	
 	String[] code = {"A", "B", "C", "D"};
-	//VendingMachineItem[] soda = {coke, pesi, drPepper, jolt};
+	
 	VendingMachineItem[] soda;
 
 	@Before
