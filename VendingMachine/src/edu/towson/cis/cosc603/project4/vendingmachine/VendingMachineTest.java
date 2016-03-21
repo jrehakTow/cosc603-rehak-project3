@@ -98,7 +98,7 @@ public class VendingMachineTest {
 	/**
 	 * Test add item1 bad code.
 	 * Precondition: Failed, code out of bounds
-	 * Postcondition: Assert item not created.
+	 * Postcondition: Assert item not created. Exception thrown. 
 	 */
 	@Test(expected = VendingMachineException.class)
 	public void testAddItem1BadCode() {
