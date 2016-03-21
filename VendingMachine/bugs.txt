@@ -5,7 +5,7 @@ Class VendingMachineItem
 
 1. When creating and item, it is possible to not assign a name to the item in the constructor method.
 
--->1. Fixed bug by adding condition to check if name parameter is null, empty, or white space. See line 33.
+-->1. Fixed bug by adding condition to check if name parameter is null, empty, or white space. Throws exception message stating name must be assigned. See line 33.
 
 Class VendingMachine
 
