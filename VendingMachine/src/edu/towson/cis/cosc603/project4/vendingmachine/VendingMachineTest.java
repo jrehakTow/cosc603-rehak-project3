@@ -80,7 +80,7 @@ public class VendingMachineTest {
 	 */
 	@Test
 	public void testVendingMachine() {
-		assertNotNull(sodaPopMachine); //make sure soda machine created
+		assertNotNull(sodaPopMachine); 
 	}
 
 	/**
@@ -90,7 +90,6 @@ public class VendingMachineTest {
 	 */
 	@Test
 	public void testAddItem() {
-		//add item normal. 
 		sodaPopMachine.addItem(jolt, "D");
 		assertSame(jolt, sodaPopMachine.getItem("D"));
 	}
@@ -102,7 +101,6 @@ public class VendingMachineTest {
 	 */
 	@Test(expected = VendingMachineException.class)
 	public void testAddItem1BadCode() {
-		//add item wrong code
 		sodaPopMachine.addItem(pesi, "E");
 		assertNotSame(pesi, sodaPopMachine.getItem("E"));
 	}

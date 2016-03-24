@@ -9,4 +9,4 @@ Class VendingMachineItem
 
 Class VendingMachine
 
-No issues discovered. Issues of bad input are all caught and could be prevented by implementing limited input choices in a GUI.
+No issues discovered. Issues of bad input are all caught and could be prevented by implementing limited input choices in a GUI or whatever interface the user will interact with.

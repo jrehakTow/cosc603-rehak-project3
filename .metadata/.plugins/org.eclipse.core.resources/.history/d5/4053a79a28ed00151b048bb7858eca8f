@@ -1,0 +1,46 @@
+package edu.towson.cis.cosc603.project4.vendingmachine;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+public class VendingMachineItemTest {
+	
+	VendingMachineItem coke;
+	VendingMachineItem pesi;
+
+	@Before
+	public void setUp() throws Exception {
+		coke = new VendingMachineItem("coke", 1.50);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testVendingMachineItem() {
+		//fail("Not yet implemented");
+		//test normal
+		assertNotNull(coke);
+	}
+	
+	@Test(expected = VendingMachineException.class)
+	public void testVendingMachineItemLessThanZero() {
+		pesi = new VendingMachineItem("pesi", -1);
+		assertNull(pesi);
+	}
+
+	@Test
+	public void testGetName() {
+		assertEquals("coke", coke.getName());
+	}
+
+	@Test
+	public void testGetPrice() {
+		assertEquals(1.50, coke.getPrice(), 0.0);
+	}
+
+}
